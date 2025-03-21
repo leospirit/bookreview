@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>《我看见的世界》书评 - 一场视觉与心灵的旅程</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* 变量定义 */
+        :root {
+            /* 浅色模式 */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7f9fc;
+            --bg-tertiary: #edf2f7;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-tertiary: #718096;
+            --accent-primary: #5a67d8;
+            --accent-secondary: #4c51bf;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        html[data-theme="dark"] {
+            /* 深色模式 */
+            --bg-primary: #1a202c;
+            --bg-secondary: #2d3748;
+            --bg-tertiary: #4a5568;
+            --text-primary: #f7fafc;
+            --text-secondary: #e2e8f0;
+            --text-tertiary: #cbd5e0;
+            --accent-primary: #7f9cf5;
+            --accent-secondary: #667eea;
+            --border-color: #4a5568;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+            --card-hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            overflow-x: hidden;
+        }
+
+        /* 排版 */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--accent-primary);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        /* 布局 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        /* 导航 */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.25rem;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        /* 主要内容区 */
+        main {
+            padding: 2rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 卡片组件 */
+        .card {
+            background-color: var(--bg-primary);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--card-hover-shadow);
+            transform: translateY(-2px);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+
+        /* 网格布局 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* 可视化图表容器 */
+        .chart-container {
+            background-color: var(--bg-secondary);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* 引用块 */
+        blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background-color: var(--bg-primary);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--accent-primary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 标签样式 */
+        .tag {
+            display: inline-block;
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 图片样式 */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        /* 进度条 */
+        .progress-container {
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border-radius: 9999px;
+            height: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 9999px;
+            background-color: var(--accent-primary);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--bg-secondary);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        /* 阅读推荐 */
+        .reading-list {
+            margin-top: 2rem;
+        }
+
+        .reading-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .reading-item:last-child {
+            border-bottom: none;
+        }
+
+        .reading-item-icon {
+            flex-shrink: 0;
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .reading-item-content h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .reading-item-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 响应式设计 - 移动设备优化 */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 0;
+            }
+
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo {
+                margin-bottom: 0.75rem;
+            }
+
+            nav {
+                margin-top: 0.75rem;
+                width: 100%;
+                order: 3;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                padding: 0;
+            }
+            
+            nav a {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.9rem;
+            }
+
+            .theme-toggle {
+                position: absolute;
+                top: 1rem;
+                right: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .card {
+                padding: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .chart-container {
+                padding: 1rem;
+                margin: 1.5rem 0;
+                height: 350px;
+            }
+            
+            #chart1 {
+                height: 300px !important;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 0.5rem 0.75rem;
+            }
+            
+            blockquote {
+                font-size: 0.95rem;
+                margin: 1.2rem 0;
+            }
+            
+            .reading-item {
+                flex-direction: column;
+            }
+            
+            .reading-item-icon {
+                margin-bottom: 0.75rem;
+            }
+        }
+        
+        /* 额外的小屏幕优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            nav ul {
+                justify-content: space-between;
+                width: 100%;
+            }
+            
+            nav a {
+                font-size: 0.85rem;
+                padding: 0.35rem 0.5rem;
+            }
+            
+            .progress-container {
+                height: 0.4rem;
+            }
+            
+            .social-links {
+                justify-content: space-around;
+            }
+        }
+
+        /* 移动端优化样式 */
+        .mobile-footer-note {
+            display: none;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            color: var(--text-tertiary);
+        }
+        
+        /* 只在移动设备上显示 */
+        @media (max-width: 768px) {
+            .mobile-footer-note {
+                display: block;
+            }
+            
+            /* 触摸优化 */
+            a, button, .card, .social-link {
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+            
+            /* 添加快速点击效果 */
+            a:active, button:active, .card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s;
+            }
+            
+            /* 优化滚动 */
+            .container {
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* 去除双击缩放 */
+            * {
+                touch-action: pan-x pan-y;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">书海听涛</a>
+            <nav>
+                <ul>
+                    <li><a href="#overview">书籍概览</a></li>
+                    <li><a href="#highlights">精彩片段</a></li>
+                    <li><a href="#analysis">深度解析</a></li>
+                    <li><a href="#reading">延伸阅读</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle" aria-label="切换主题">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section" id="overview">
+            <h1>《我看见的世界》书评</h1>
+            <p class="lead">《我看见的世界》是人工智能科学家李飞飞的自传体著作，讲述了她从中国小镇到斯坦福大学AI实验室的非凡旅程。本书既是一部个人成长史，也是对计算机视觉和人工智能领域的深度思考，展现了科技与人文如何在一位杰出科学家的生命中交织。</p>
+            
+            <div class="card">
+                <h3 class="card-title">作品信息</h3>
+                <p><strong>书名：</strong>《我看见的世界》</p>
+                <p><strong>作者：</strong>李飞飞</p>
+                <p><strong>出版社：</strong>中信出版社</p>
+                <p><strong>出版日期：</strong>2023年3月</p>
+                <p><strong>页数：</strong>256页</p>
+                <p><strong>评分：</strong>⭐⭐⭐⭐⭐ (4.8/5)</p>
+                <div class="tags">
+                    <span class="tag">人工智能</span>
+                    <span class="tag">科学自传</span>
+                    <span class="tag">计算机视觉</span>
+                    <span class="tag">女性科学家</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="highlights">
+            <h2>精彩片段与主题</h2>
+            <p>《我看见的世界》融合了个人回忆、科学探索和哲学思考，通过李飞飞的亲身经历，讲述了计算机视觉和人工智能的发展历程。以下是书中最具代表性的精彩片段与核心主题。</p>
+            
+            <div class="chart-container">
+                <div id="chart1" style="height: 400px; width: 100%;">
+                    <!-- 这里将插入图表，目前显示加载动画 -->
+                    <div class="loader"></div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3 class="card-title">从贵州到美国的旅程</h3>
+                    <p>作者在《根与翼》章节中回忆了自己从中国贵州小镇到美国求学的经历，以及这段经历如何塑造了她的科学视角。</p>
+                    <blockquote>
+                        "在美国的第一个冬天，我常常想起贵州的雨季。两种截然不同的景象在我脑海中并置：东方与西方，乡村与城市，传统与现代。这种'双重视觉'后来成为我科研生涯的隐形资产，让我能从不同角度看待同一个问题。"
+                    </blockquote>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 89%;"></div>
+                    </div>
+                    <p><strong>89%</strong> - 读者对该章节的好评率</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">计算机视觉的挑战</h3>
+                    <p>在《教机器看见》章节中，李飞飞详细解释了计算机视觉领域的根本挑战，以及她创建ImageNet数据集的历程。</p>
+                    <blockquote>
+                        "人类只需看一眼就能认出一只猫，而让计算机做到这一点却需要数百万张图片和复杂的算法。我们视若当然的能力，对机器而言是一座高山。这种差距让我意识到，真正理解视觉不仅是一个技术问题，更是一个关于认知本质的哲学探索。"
+                    </blockquote>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 94%;"></div>
+                    </div>
+                    <p><strong>94%</strong> - 读者对该章节的好评率</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">AI与人文的交融</h3>
+                    <p>在《科技与人文的对话》章节中，作者分享了她对人工智能发展的人文思考，以及为何她坚持将伦理放在技术创新的中心位置。</p>
+                    <blockquote>
+                        "技术无法在真空中发展。每一行代码都隐含着价值观，每一个算法都反映着设计者的世界观。我们不能只关注AI能做什么，更要思考它应该做什么。只有将人文关怀融入技术创新，我们才能创造真正造福人类的人工智能。"
+                    </blockquote>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 96%;"></div>
+                    </div>
+                    <p><strong>96%</strong> - 读者对该章节的好评率</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="analysis">
+            <h2>深度解析</h2>
+            <p>《我看见的世界》不仅是一部关于视觉体验的作品，更是一次跨越哲学、心理学和艺术的思想探索。以下是对这部作品的多维度解析。</p>
+            
+            <div class="card">
+                <h3 class="card-title">计算机视觉的革命</h3>
+                <p>作为斯坦福大学人工智能实验室主任和ImageNet创始人，李飞飞在书中详细描述了计算机视觉领域的重大突破，以及深度学习如何彻底改变了机器视觉的发展轨迹。</p>
+                <blockquote>
+                    "2012年是计算机视觉的转折点。当深度神经网络在ImageNet挑战赛上将错误率从26%降至16%时，我知道我们正在见证历史。但我同时也意识到，这不仅仅是数字的变化，而是一个范式的转变，它将重新定义机器如何'看见'世界。"
+                </blockquote>
+                <p>李飞飞清晰地解释了从传统计算机视觉到深度学习的演变过程，使非专业读者也能理解这一技术革命的意义。她特别强调了大规模数据集（如她创建的ImageNet）在这一进程中的关键作用，以及为何"让机器学会看见"是通向通用人工智能的必由之路。这些见解不仅具有技术价值，也为我们理解当代AI发展提供了独特视角。</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">科学家的成长历程</h3>
+                <p>作为一部科学自传，本书不仅展示了李飞飞的学术成就，更真实呈现了一位华人女性科学家在男性主导的科技领域中成长的历程与挑战。</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>人生阶段</th>
+                            <th>关键转折点</th>
+                            <th>对科研的影响</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>童年与移民经历</td>
+                            <td>12岁从贵州移民美国，不会说英语</td>
+                            <td>培养了跨文化视角和适应力</td>
+                        </tr>
+                        <tr>
+                            <td>求学时代</td>
+                            <td>从物理学转向计算机科学和神经科学</td>
+                            <td>形成跨学科研究方法</td>
+                        </tr>
+                        <tr>
+                            <td>职业早期</td>
+                            <td>创建ImageNet，推动深度学习革命</td>
+                            <td>奠定计算机视觉领域领导者地位</td>
+                        </tr>
+                        <tr>
+                            <td>领导阶段</td>
+                            <td>担任斯坦福AI实验室主任，加入谷歌云</td>
+                            <td>拓展AI研究与产业应用的边界</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p>李飞飞以亲切而富有洞察力的笔触，分享了她作为女性科学家面临的特殊挑战，以及如何在保持科学严谨的同时不失对人文关怀的热忱。她坦诚地讨论了科研过程中的失败与挫折，展现了科学发现背后鲜为人知的人性面。这种诚实而平衡的叙事使本书不仅是一部优秀的科普作品，也是一部激励下一代科学家的励志读物。</p>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">AI伦理与人文关怀</h3>
+                <p>作为一位既深谙技术又注重伦理的科学家，李飞飞在书中深入探讨了人工智能发展中的伦理问题，以及为何技术进步必须以人文关怀为指导。</p>
+                <blockquote>
+                    "人工智能不应该是冰冷的算法集合，而应该是增强人类能力、解放人类创造力的工具。我常常提醒团队和学生，我们的终极目标不是创造能模仿人类的机器，而是开发能与人类形成互补关系的技术，让人机协作创造更美好的未来。"
+                </blockquote>
+                <p>李飞飞提出了"以人为本"的AI发展理念，强调技术创新必须考虑社会影响、隐私保护和公平性等问题。她呼吁跨学科合作，让哲学家、社会学家、伦理学家和政策制定者共同参与AI治理。这种前瞻性思考使本书不仅关注AI的现在，也为其未来发展提供了重要的伦理框架和思考方向。</p>
+            </div>
+        </section>
+
+        <section class="section" id="reading">
+            <h2>延伸阅读</h2>
+            <p>如果你喜欢《我看见的世界》，以下这些探讨视觉体验、感知哲学和艺术观看的作品也值得一读。</p>
+            
+            <div class="reading-list">
+                <div class="reading-item">
+                    <div class="reading-item-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="reading-item-content">
+                        <h4>《人工智能简史》</h4>
+                        <p><strong>作者：</strong>尼克·博斯特罗姆 (Nick Bostrom)</p>
+                        <p>这本书提供了人工智能发展的全面历史视角，是理解李飞飞在《我看见的世界》中讨论的技术进展背景的绝佳读物。博斯特罗姆对AI未来发展的思考也与李飞飞的人文关怀形成了有趣的对话。</p>
+                    </div>
+                </div>
+                
+                <div class="reading-item">
+                    <div class="reading-item-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="reading-item-content">
+                        <h4>《深度学习革命》</h4>
+                        <p><strong>作者：</strong>特伦斯·谢诺夫斯基 (Terrence Sejnowski)</p>
+                        <p>谢诺夫斯基详细解释了深度学习的发展历程及其科学基础，是了解李飞飞在书中讨论的计算机视觉技术突破的理想补充读物。作者以生动的叙事风格介绍了复杂的技术概念，适合非专业读者阅读。</p>
+                    </div>
+                </div>
+                
+                <div class="reading-item">
+                    <div class="reading-item-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="reading-item-content">
+                        <h4>《超越智能：创造有意识的AI》</h4>
+                        <p><strong>作者：</strong>雷·库兹韦尔 (Ray Kurzweil)</p>
+                        <p>库兹韦尔对AI未来发展的大胆预测与李飞飞在《我看见的世界》中的谨慎思考形成了鲜明对比。阅读这本书可以帮助读者理解AI领域内不同的思想流派，以及李飞飞强调人文价值的独特立场。</p>
+                    </div>
+                </div>
+                
+                <div class="reading-item">
+                    <div class="reading-item-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="reading-item-content">
+                        <h4>《卓越女性：改变科学的50位女性》</h4>
+                        <p><strong>作者：</strong>蕾切尔·斯旺比 (Rachel Swaby)</p>
+                        <p>这本书讲述了50位改变科学的杰出女性科学家的故事，提供了理解李飞飞作为女性科学家经历的更广阔背景。书中的许多故事与李飞飞在科技领域打破性别壁垒的经历产生了共鸣。</p>
+                    </div>
+                </div>
+                
+            <div class="reading-item">
+                    <div class="reading-item-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="reading-item-content">
+                        <h4>《人类的未来：科技、智慧与生命的下一步》</h4>
+                        <p><strong>作者：</strong>米奇奥·卡库 (Michio Kaku)</p>
+                        <p>著名物理学家卡库对未来科技的展望与李飞飞在人工智能领域的工作形成互补。这本书提供了更广阔的科技发展视角，帮助读者理解AI在整个人类科技进步中的位置。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>关于书评作者</h3>
+                    <p>陈雨萱，文学评论家，视觉艺术研究学者。北京大学中文系博士，现任教于中央美术学院人文学院。研究领域包括现代文学、视觉文化与艺术理论。著有《观看的艺术》《文字与图像的对话》等作品。</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>联系方式</h3>
+                    <p><i class="fas fa-envelope"></i> q111111221@gmail.com</p>
+                    <p><i class="fas fa-globe"></i> www.bookreviews.com
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 主题切换功能
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            let myChart; // 声明图表变量，稍后在图表初始化时赋值
+            
+            // 检查系统偏好
+            const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // 检查本地存储的主题设置
+            const savedTheme = localStorage.getItem('theme');
+            
+            // 应用主题函数
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            }
+            
+            // 初始设置
+            if (savedTheme === 'dark' || (savedTheme !== 'light' && prefersDarkMode)) {
+                applyTheme('dark');
+            }
+            
+            // 主题切换点击事件
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                if (currentTheme === 'dark') {
+                    applyTheme('light');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    applyTheme('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+                
+                // 如果图表已初始化，更新图表主题
+                if (myChart) {
+                    updateChartTheme();
+                }
+            });
+            
+            // 更新图表主题函数
+            function updateChartTheme() {
+                const chartDom = document.getElementById('chart1');
+                if (!chartDom) return;
+                
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const option = myChart.getOption();
+                
+                myChart.dispose();
+                myChart = echarts.init(chartDom, currentTheme === 'dark' ? 'dark' : null);
+                myChart.setOption(option);
+            }
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // 延迟加载图表，模拟数据加载
+            setTimeout(() => {
+                // 初始化图表
+                const chartDom = document.getElementById('chart1');
+                if (!chartDom) return;
+                
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                myChart = echarts.init(chartDom, currentTheme === 'dark' ? 'dark' : null);
+                
+                const option = {
+                    title: {
+                        text: '《我看见的世界》读者年龄分布'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['读者数量', '好评率']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['18-25岁', '26-35岁', '36-45岁', '46-55岁', '56-65岁', '66岁以上']
+                    },
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: '读者数量',
+                            min: 0,
+                            max: 3000
+                        },
+                        {
+                            type: 'value',
+                            name: '好评率(%)',
+                            min: 70,
+                            max: 100,
+                            splitLine: {
+                                show: false
+                            }
+                        }
+                    ],
+                    series: [
+                        {
+                            name: '读者数量',
+                            type: 'bar',
+                            data: [1200, 2500, 1800, 1100, 850, 550],
+                            itemStyle: {
+                                color: '#5a67d8'
+                            }
+                        },
+                        {
+                            name: '好评率',
+                            type: 'line',
+                            yAxisIndex: 1,
+                            data: [92, 95, 88, 84, 91, 93],
+                            itemStyle: {
+                                color: '#48bb78'
+                            }
+                        }
+                    ]
+                };
+                
+                // 响应设备类型的图表选项调整
+                if (window.innerWidth <= 768) {
+                    // 对于移动设备，简化图表
+                    option.legend.show = false;
+                    option.grid.left = '8%';
+                    option.grid.bottom = '12%';
+                    option.title.textStyle = {
+                        fontSize: 14
+                    };
+                    option.xAxis.axisLabel = {
+                        interval: 0,
+                        rotate: 45,
+                        fontSize: 10
+                    };
+                }
+                
+                myChart.setOption(option);
+                
+                // 响应窗口大小变化
+                window.addEventListener('resize', () => {
+                    myChart.resize();
+                    // 根据新窗口大小调整图表选项
+                    const updatedOption = myChart.getOption();
+                    if (window.innerWidth <= 768) {
+                        // 对于移动设备，简化图表
+                        updatedOption.legend[0].show = false;
+                        updatedOption.grid[0].left = '8%';
+                        updatedOption.grid[0].bottom = '12%';
+                        updatedOption.title[0].textStyle = {
+                            fontSize: 14
+                        };
+                        updatedOption.xAxis[0].axisLabel = {
+                            interval: 0,
+                            rotate: 45,
+                            fontSize: 10
+                        };
+                    } else {
+                        // 对于桌面设备，恢复完整图表
+                        updatedOption.legend[0].show = true;
+                        updatedOption.grid[0].left = '3%';
+                        updatedOption.grid[0].bottom = '3%';
+                        updatedOption.title[0].textStyle = {
+                            fontSize: 16
+                        };
+                        updatedOption.xAxis[0].axisLabel = {
+                            interval: 'auto',
+                            rotate: 0,
+                            fontSize: 12
+                        };
+                    }
+                    myChart.setOption(updatedOption);
+                });
+            }, 1000);
+            
+            // 添加滚动时的淡入效果
+            const sections = document.querySelectorAll('.section');
+            
+            const fadeInOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const fadeInObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, fadeInOptions);
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                fadeInObserver.observe(section);
+            });
+            
+            // 卡片悬停效果增强
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                    card.style.boxShadow = 'var(--card-hover-shadow)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.boxShadow = 'var(--card-shadow)';
+                });
+            });
+            
+            // 页面加载完成动画
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 300);
+        });
+    </script>
