@@ -2,1032 +2,1258 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>《我看见的世界》书评 - 一场视觉与心灵的旅程</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growing-up Story - 成长时光机</title>
     <style>
-        /* 变量定义 */
-        :root {
-            /* 浅色模式 */
-            --bg-primary: #ffffff;
-            --bg-secondary: #f7f9fc;
-            --bg-tertiary: #edf2f7;
-            --text-primary: #1a202c;
-            --text-secondary: #4a5568;
-            --text-tertiary: #718096;
-            --accent-primary: #5a67d8;
-            --accent-secondary: #4c51bf;
-            --border-color: #e2e8f0;
-            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-            --card-hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        html[data-theme="dark"] {
-            /* 深色模式 */
-            --bg-primary: #1a202c;
-            --bg-secondary: #2d3748;
-            --bg-tertiary: #4a5568;
-            --text-primary: #f7fafc;
-            --text-secondary: #e2e8f0;
-            --text-tertiary: #cbd5e0;
-            --accent-primary: #7f9cf5;
-            --accent-secondary: #667eea;
-            --border-color: #4a5568;
-            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
-            --card-hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        /* 基础样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         body {
-            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            -webkit-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: #fff;
         }
 
-        /* 排版 */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+        /* 动态背景 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 70%),
+                radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 70%),
+                radial-gradient(circle at 40% 20%, rgba(120, 219, 255, 0.2) 0%, transparent 70%);
+            animation: backgroundFloat 20s ease-in-out infinite;
+            z-index: -1;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+        @keyframes backgroundFloat {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            33% { transform: rotate(1deg) scale(1.05); }
+            66% { transform: rotate(-1deg) scale(0.95); }
         }
 
-        h2 {
-            font-size: 2rem;
-            border-bottom: 2px solid var(--accent-primary);
-            padding-bottom: 0.5rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
+        .game-container {
+            width: 100%;
+            max-width: 1400px;
+            min-height: 100vh;
+            position: relative;
+            backdrop-filter: blur(10px);
+            background: rgba(20, 20, 30, 0.8);
         }
 
-        h3 {
-            font-size: 1.5rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--accent-primary);
+        /* 主菜单样式 */
+        .main-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
         }
 
-        p {
-            margin-bottom: 1.25rem;
-            font-size: 1.05rem;
+        .game-title {
+            font-size: 5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #ff6b6b 50%, #4ecdc4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            letter-spacing: -3px;
+            margin-bottom: 10px;
+            animation: titleGlow 3s ease-in-out infinite;
+            text-shadow: 0 0 80px rgba(102, 126, 234, 0.5);
         }
 
-        strong {
+        @keyframes titleGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .game-subtitle {
+            font-size: 1.8em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 60px;
+            letter-spacing: 4px;
+            font-weight: 200;
+            text-transform: uppercase;
+        }
+
+        /* 3D成长树 */
+        .growing-tree {
+            width: 300px;
+            height: 300px;
+            margin: 40px auto;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: treeRotate 10s linear infinite;
+        }
+
+        @keyframes treeRotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .tree-element {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.8), transparent);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .menu-button {
+            padding: 20px 60px;
+            font-size: 1.2em;
             font-weight: 600;
-            color: var(--accent-primary);
+            border: 2px solid transparent;
+            border-radius: 60px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(255, 107, 107, 0.9));
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-width: 300px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        /* 布局 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+        .menu-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
-        header {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 2rem;
+        .menu-button:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
-        .header-container {
+        .menu-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* 游戏界面样式 */
+        .game-screen {
+            display: none;
+            min-height: 100vh;
+            padding: 30px;
+            background: rgba(10, 10, 20, 0.9);
+        }
+
+        .game-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent-primary);
-            text-decoration: none;
+        .stat-item {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* 导航 */
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
+        .stat-value {
+            color: #667eea;
+            font-weight: 800;
+            margin-left: 5px;
         }
 
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            transition: all 0.2s ease;
-        }
-
-        nav a:hover {
-            color: var(--accent-primary);
-            background-color: var(--bg-secondary);
-        }
-
-        .theme-toggle {
-            background: none;
+        .back-button {
+            padding: 12px 30px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
             border: none;
-            color: var(--text-secondary);
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 1.25rem;
-            padding: 0.5rem;
-            border-radius: 0.375rem;
-        }
-
-        .theme-toggle:hover {
-            color: var(--accent-primary);
-            background-color: var(--bg-secondary);
-        }
-
-        /* 主要内容区 */
-        main {
-            padding: 2rem 0;
-        }
-
-        .section {
-            margin-bottom: 4rem;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 卡片组件 */
-        .card {
-            background-color: var(--bg-primary);
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--card-shadow);
+            font-weight: 600;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-button:hover {
+            background: rgba(239, 68, 68, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(239, 68, 68, 0.4);
+        }
+
+        /* 卡片游戏区域 */
+        .game-board {
+            display: grid;
+            gap: 20px;
+            margin: 40px auto;
+            max-width: 1000px;
+            padding: 20px;
+            perspective: 1000px;
+        }
+
+        .card {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            border-radius: 20px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(102, 126, 234, 0.4));
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card:hover {
-            box-shadow: var(--card-hover-shadow);
-            transform: translateY(-2px);
+            transform: translateY(-10px) rotateX(-10deg);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.6);
         }
 
-        .card-title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--accent-primary);
+        .card.flipped {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            border-color: rgba(102, 126, 234, 0.6);
         }
 
-        /* 网格布局 */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        /* 可视化图表容器 */
-        .chart-container {
-            background-color: var(--bg-secondary);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            box-shadow: var(--card-shadow);
-        }
-
-        /* 引用块 */
-        blockquote {
-            border-left: 4px solid var(--accent-primary);
-            padding-left: 1rem;
-            margin: 1.5rem 0;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        /* 表格样式 */
-        table {
+        .card-content {
+            position: absolute;
             width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            background-color: var(--bg-primary);
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-        }
-
-        th, td {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        th {
-            background-color: var(--bg-secondary);
-            font-weight: 600;
-            color: var(--accent-primary);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* 按钮样式 */
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 标签样式 */
-        .tag {
-            display: inline-block;
-            background-color: var(--bg-secondary);
-            color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* 图片样式 */
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.5rem;
-            margin: 1.5rem 0;
-        }
-
-        /* 进度条 */
-        .progress-container {
-            width: 100%;
-            background-color: var(--bg-secondary);
-            border-radius: 9999px;
-            height: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .progress-bar {
             height: 100%;
-            border-radius: 9999px;
-            background-color: var(--accent-primary);
-        }
-
-        /* 页脚 */
-        footer {
-            background-color: var(--bg-secondary);
-            padding: 3rem 0;
-            margin-top: 4rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .footer-section h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-section p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            transition: color 0.2s ease;
-        }
-
-        .social-link:hover {
-            color: var(--accent-primary);
-        }
-
-        .copyright {
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4em;
+            font-weight: 700;
             text-align: center;
-            padding-top: 2rem;
-            color: var(--text-tertiary);
-            font-size: 0.875rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 2rem;
+            padding: 15px;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+            color: #1e293b;
         }
 
-        /* 阅读推荐 */
-        .reading-list {
-            margin-top: 2rem;
+        .card.flipped .card-content {
+            transform: rotateY(0deg);
         }
 
-        .reading-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+        .card.matched {
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            animation: matchPulse 0.8s ease;
+            border-color: #10b981;
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.6);
         }
 
-        .reading-item:last-child {
-            border-bottom: none;
+        .card.matched .card-content {
+            color: #fff;
         }
 
-        .reading-item-icon {
-            flex-shrink: 0;
-            color: var(--accent-primary);
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            margin-top: 0.25rem;
+        @keyframes matchPulse {
+            0% { transform: scale(1) rotateY(180deg); }
+            50% { transform: scale(1.1) rotateY(180deg); }
+            100% { transform: scale(1) rotateY(180deg); }
         }
 
-        .reading-item-content h4 {
-            margin-bottom: 0.5rem;
+        /* 反馈消息 */
+        .feedback-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            padding: 40px 60px;
+            background: rgba(20, 20, 30, 0.95);
+            border-radius: 30px;
+            border: 2px solid rgba(102, 126, 234, 0.6);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.8);
+            font-size: 1.8em;
+            font-weight: 600;
+            text-align: center;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        .reading-item-content p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
+        .feedback-message.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
         }
 
-        /* 响应式设计 - 移动设备优化 */
-        @media (max-width: 768px) {
-            header {
-                padding: 1rem 0;
-            }
-
-            .header-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .logo {
-                margin-bottom: 0.75rem;
-            }
-
-            nav {
-                margin-top: 0.75rem;
-                width: 100%;
-                order: 3;
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-                padding: 0;
-            }
-            
-            nav a {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.9rem;
-            }
-
-            .theme-toggle {
-                position: absolute;
-                top: 1rem;
-                right: 1.5rem;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-                line-height: 1.3;
-            }
-
-            h2 {
-                font-size: 1.4rem;
-            }
-            
-            h3 {
-                font-size: 1.2rem;
-            }
-
-            .lead {
-                font-size: 1rem;
-                line-height: 1.5;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .card {
-                padding: 1.2rem;
-                margin-bottom: 1rem;
-            }
-            
-            .chart-container {
-                padding: 1rem;
-                margin: 1.5rem 0;
-                height: 350px;
-            }
-            
-            #chart1 {
-                height: 300px !important;
-            }
-            
-            table {
-                font-size: 0.9rem;
-            }
-            
-            th, td {
-                padding: 0.5rem 0.75rem;
-            }
-            
-            blockquote {
-                font-size: 0.95rem;
-                margin: 1.2rem 0;
-            }
-            
-            .reading-item {
-                flex-direction: column;
-            }
-            
-            .reading-item-icon {
-                margin-bottom: 0.75rem;
-            }
-        }
-        
-        /* 额外的小屏幕优化 */
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-            
-            nav ul {
-                justify-content: space-between;
-                width: 100%;
-            }
-            
-            nav a {
-                font-size: 0.85rem;
-                padding: 0.35rem 0.5rem;
-            }
-            
-            .progress-container {
-                height: 0.4rem;
-            }
-            
-            .social-links {
-                justify-content: space-around;
-            }
-        }
-
-        /* 移动端优化样式 */
-        .mobile-footer-note {
+        /* 章节选择 */
+        .chapter-selection {
             display: none;
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-            color: var(--text-tertiary);
+            min-height: 100vh;
+            padding: 30px;
+            background: rgba(10, 10, 20, 0.9);
         }
-        
-        /* 只在移动设备上显示 */
+
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .chapter-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.9));
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.4), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .chapter-card:hover::before {
+            opacity: 1;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(102, 126, 234, 0.5);
+            border-color: rgba(102, 126, 234, 0.8);
+        }
+
+        .chapter-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            position: relative;
+        }
+
+        /* 章节完成标记 */
+        .chapter-completed {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.6);
+            animation: completedPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes completedPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .chapter-title {
+            font-size: 2em;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .chapter-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+
+        .chapter-progress {
+            background: rgba(255, 255, 255, 0.1);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .chapter-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #ff6b6b);
+            transition: width 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: progressShine 2s linear infinite;
+        }
+
+        @keyframes progressShine {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
+        }
+
+        /* 成就系统 */
+        .achievements-screen {
+            display: none;
+            min-height: 100vh;
+            padding: 30px;
+            background: rgba(10, 10, 20, 0.9);
+        }
+
+        .achievement-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.9));
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card.unlocked {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2));
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
+        }
+
+        .achievement-card.unlocked::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3), transparent);
+            animation: achievementGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes achievementGlow {
+            0%, 100% { opacity: 0.5; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .achievement-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            filter: grayscale(1);
+            opacity: 0.5;
+            transition: all 0.4s ease;
+        }
+
+        .achievement-card.unlocked .achievement-icon {
+            filter: grayscale(0);
+            opacity: 1;
+            animation: iconBounce 0.6s ease;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .achievement-name {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .achievement-card.unlocked .achievement-name {
+            color: #fff;
+        }
+
+        .achievement-desc {
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .achievement-card.unlocked .achievement-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 粒子效果 */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 9999;
+        }
+
+        .particle.star {
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            box-shadow: 0 0 10px #fff;
+            animation: starFloat 3s ease-out;
+        }
+
+        @keyframes starFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-100px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(0);
+            }
+        }
+
+        /* 响应式设计 */
         @media (max-width: 768px) {
-            .mobile-footer-note {
-                display: block;
+            .game-title {
+                font-size: 3.5em;
             }
-            
-            /* 触摸优化 */
-            a, button, .card, .social-link {
-                -webkit-tap-highlight-color: transparent;
-                touch-action: manipulation;
+
+            .game-subtitle {
+                font-size: 1.3em;
             }
-            
-            /* 添加快速点击效果 */
-            a:active, button:active, .card:active {
-                transform: scale(0.98);
-                transition: transform 0.1s;
+
+            .menu-button {
+                min-width: 250px;
+                padding: 18px 40px;
+                font-size: 1.1em;
             }
-            
-            /* 优化滚动 */
-            .container {
-                -webkit-overflow-scrolling: touch;
+
+            .game-board {
+                gap: 15px;
             }
-            
-            /* 去除双击缩放 */
-            * {
-                touch-action: pan-x pan-y;
+
+            .card-content {
+                font-size: 1.1em;
             }
+
+            .chapter-card {
+                padding: 30px;
+            }
+
+            .chapter-icon {
+                font-size: 4em;
+            }
+
+            .chapter-title {
+                font-size: 1.6em;
+            }
+        }
+
+        /* 加载动画 */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-icon {
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2em;
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">青春读书会</a>
-            <nav>
-                <ul>
-                    <li><a href="#overview">书籍概览</a></li>
-                    <li><a href="#highlights">精彩片段</a></li>
-                    <li><a href="#analysis">深度解析</a></li>
-                    <li><a href="#reading">延伸阅读</a></li>
-                </ul>
-            </nav>
-            <button id="theme-toggle" class="theme-toggle" aria-label="切换主题">
-                <i class="fas fa-moon"></i>
-            </button>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-icon"></div>
+            <div class="loading-text">LOADING...</div>
         </div>
-    </header>
+    </div>
 
-    <main class="container">
-        <section class="section" id="overview">
-            <h1>《我看见的世界》书评</h1>
-            <p class="lead">《我看见的世界》是人工智能科学家李飞飞的自传体著作，讲述了她从中国小镇到斯坦福大学AI实验室的非凡旅程。本书既是一部个人成长史，也是对计算机视觉和人工智能领域的深度思考，展现了科技与人文如何在一位杰出科学家的生命中交织。</p>
+    <div class="game-container">
+        <!-- 主菜单 -->
+        <div class="main-menu" id="mainMenu">
+            <h1 class="game-title">Growing-up Story</h1>
+            <p class="game-subtitle">成长时光机</p>
             
-            <div class="card">
-                <h3 class="card-title">作品信息</h3>
-                <p><strong>书名：</strong>《我看见的世界》</p>
-                <p><strong>作者：</strong>李飞飞</p>
-                <p><strong>出版社：</strong>中信出版社</p>
-                <p><strong>出版日期：</strong>2023年3月</p>
-                <p><strong>页数：</strong>256页</p>
-                <p><strong>评分：</strong>⭐⭐⭐⭐⭐ (4.8/5)</p>
-                <div class="tags">
-                    <span class="tag">人工智能</span>
-                    <span class="tag">科学自传</span>
-                    <span class="tag">计算机视觉</span>
-                    <span class="tag">女性科学家</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="highlights">
-            <h2>精彩片段与主题</h2>
-            <p>《我看见的世界》融合了个人回忆、科学探索和哲学思考，通过李飞飞的亲身经历，讲述了计算机视觉和人工智能的发展历程。以下是书中最具代表性的精彩片段与核心主题。</p>
-            
-            <div class="chart-container">
-                <div id="chart1" style="height: 400px; width: 100%;">
-                    <!-- 这里将插入图表，目前显示加载动画 -->
-                    <div class="loader"></div>
-                </div>
-            </div>
-
-            <div class="grid">
-                <div class="card">
-                    <h3 class="card-title">从贵州到美国的旅程</h3>
-                    <p>作者在《根与翼》章节中回忆了自己从中国贵州小镇到美国求学的经历，以及这段经历如何塑造了她的科学视角。</p>
-                    <blockquote>
-                        "在美国的第一个冬天，我常常想起贵州的雨季。两种截然不同的景象在我脑海中并置：东方与西方，乡村与城市，传统与现代。这种'双重视觉'后来成为我科研生涯的隐形资产，让我能从不同角度看待同一个问题。"
-                    </blockquote>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 89%;"></div>
-                    </div>
-                    <p><strong>89%</strong> - 读者对该章节的好评率</p>
-                </div>
-                
-                <div class="card">
-                    <h3 class="card-title">计算机视觉的挑战</h3>
-                    <p>在《教机器看见》章节中，李飞飞详细解释了计算机视觉领域的根本挑战，以及她创建ImageNet数据集的历程。</p>
-                    <blockquote>
-                        "人类只需看一眼就能认出一只猫，而让计算机做到这一点却需要数百万张图片和复杂的算法。我们视若当然的能力，对机器而言是一座高山。这种差距让我意识到，真正理解视觉不仅是一个技术问题，更是一个关于认知本质的哲学探索。"
-                    </blockquote>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 94%;"></div>
-                    </div>
-                    <p><strong>94%</strong> - 读者对该章节的好评率</p>
-                </div>
-                
-                <div class="card">
-                    <h3 class="card-title">AI与人文的交融</h3>
-                    <p>在《科技与人文的对话》章节中，作者分享了她对人工智能发展的人文思考，以及为何她坚持将伦理放在技术创新的中心位置。</p>
-                    <blockquote>
-                        "技术无法在真空中发展。每一行代码都隐含着价值观，每一个算法都反映着设计者的世界观。我们不能只关注AI能做什么，更要思考它应该做什么。只有将人文关怀融入技术创新，我们才能创造真正造福人类的人工智能。"
-                    </blockquote>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 96%;"></div>
-                    </div>
-                    <p><strong>96%</strong> - 读者对该章节的好评率</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="analysis">
-            <h2>深度解析</h2>
-            <p>《我看见的世界》不仅是一部关于视觉体验的作品，更是一次跨越哲学、心理学和艺术的思想探索。以下是对这部作品的多维度解析。</p>
-            
-            <div class="card">
-                <h3 class="card-title">计算机视觉的革命</h3>
-                <p>作为斯坦福大学人工智能实验室主任和ImageNet创始人，李飞飞在书中详细描述了计算机视觉领域的重大突破，以及深度学习如何彻底改变了机器视觉的发展轨迹。</p>
-                <blockquote>
-                    "2012年是计算机视觉的转折点。当深度神经网络在ImageNet挑战赛上将错误率从26%降至16%时，我知道我们正在见证历史。但我同时也意识到，这不仅仅是数字的变化，而是一个范式的转变，它将重新定义机器如何'看见'世界。"
-                </blockquote>
-                <p>李飞飞清晰地解释了从传统计算机视觉到深度学习的演变过程，使非专业读者也能理解这一技术革命的意义。她特别强调了大规模数据集（如她创建的ImageNet）在这一进程中的关键作用，以及为何"让机器学会看见"是通向通用人工智能的必由之路。这些见解不仅具有技术价值，也为我们理解当代AI发展提供了独特视角。</p>
+            <div class="growing-tree">
+                <div class="tree-element"></div>
             </div>
             
-            <div class="card">
-                <h3 class="card-title">科学家的成长历程</h3>
-                <p>作为一部科学自传，本书不仅展示了李飞飞的学术成就，更真实呈现了一位华人女性科学家在男性主导的科技领域中成长的历程与挑战。</p>
-                
-                <table>
-                    <thead>
-                        <tr>
-                            <th>人生阶段</th>
-                            <th>关键转折点</th>
-                            <th>对科研的影响</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>童年与移民经历</td>
-                            <td>12岁从贵州移民美国，不会说英语</td>
-                            <td>培养了跨文化视角和适应力</td>
-                        </tr>
-                        <tr>
-                            <td>求学时代</td>
-                            <td>从物理学转向计算机科学和神经科学</td>
-                            <td>形成跨学科研究方法</td>
-                        </tr>
-                        <tr>
-                            <td>职业早期</td>
-                            <td>创建ImageNet，推动深度学习革命</td>
-                            <td>奠定计算机视觉领域领导者地位</td>
-                        </tr>
-                        <tr>
-                            <td>领导阶段</td>
-                            <td>担任斯坦福AI实验室主任，加入谷歌云</td>
-                            <td>拓展AI研究与产业应用的边界</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <p>李飞飞以亲切而富有洞察力的笔触，分享了她作为女性科学家面临的特殊挑战，以及如何在保持科学严谨的同时不失对人文关怀的热忱。她坦诚地讨论了科研过程中的失败与挫折，展现了科学发现背后鲜为人知的人性面。这种诚实而平衡的叙事使本书不仅是一部优秀的科普作品，也是一部激励下一代科学家的励志读物。</p>
-            </div>
-            
-            <div class="card">
-                <h3 class="card-title">AI伦理与人文关怀</h3>
-                <p>作为一位既深谙技术又注重伦理的科学家，李飞飞在书中深入探讨了人工智能发展中的伦理问题，以及为何技术进步必须以人文关怀为指导。</p>
-                <blockquote>
-                    "人工智能不应该是冰冷的算法集合，而应该是增强人类能力、解放人类创造力的工具。我常常提醒团队和学生，我们的终极目标不是创造能模仿人类的机器，而是开发能与人类形成互补关系的技术，让人机协作创造更美好的未来。"
-                </blockquote>
-                <p>李飞飞提出了"以人为本"的AI发展理念，强调技术创新必须考虑社会影响、隐私保护和公平性等问题。她呼吁跨学科合作，让哲学家、社会学家、伦理学家和政策制定者共同参与AI治理。这种前瞻性思考使本书不仅关注AI的现在，也为其未来发展提供了重要的伦理框架和思考方向。</p>
-            </div>
-        </section>
-
-        <section class="section" id="reading">
-            <h2>延伸阅读</h2>
-            <p>如果你喜欢《我看见的世界》，以下这些探讨视觉体验、感知哲学和艺术观看的作品也值得一读。</p>
-            
-            <div class="reading-list">
-                <div class="reading-item">
-                    <div class="reading-item-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="reading-item-content">
-                        <h4>《人工智能简史》</h4>
-                        <p><strong>作者：</strong>尼克·博斯特罗姆 (Nick Bostrom)</p>
-                        <p>这本书提供了人工智能发展的全面历史视角，是理解李飞飞在《我看见的世界》中讨论的技术进展背景的绝佳读物。博斯特罗姆对AI未来发展的思考也与李飞飞的人文关怀形成了有趣的对话。</p>
-                    </div>
-                </div>
-                
-                <div class="reading-item">
-                    <div class="reading-item-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="reading-item-content">
-                        <h4>《深度学习革命》</h4>
-                        <p><strong>作者：</strong>特伦斯·谢诺夫斯基 (Terrence Sejnowski)</p>
-                        <p>谢诺夫斯基详细解释了深度学习的发展历程及其科学基础，是了解李飞飞在书中讨论的计算机视觉技术突破的理想补充读物。作者以生动的叙事风格介绍了复杂的技术概念，适合非专业读者阅读。</p>
-                    </div>
-                </div>
-                
-                <div class="reading-item">
-                    <div class="reading-item-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="reading-item-content">
-                        <h4>《超越智能：创造有意识的AI》</h4>
-                        <p><strong>作者：</strong>雷·库兹韦尔 (Ray Kurzweil)</p>
-                        <p>库兹韦尔对AI未来发展的大胆预测与李飞飞在《我看见的世界》中的谨慎思考形成了鲜明对比。阅读这本书可以帮助读者理解AI领域内不同的思想流派，以及李飞飞强调人文价值的独特立场。</p>
-                    </div>
-                </div>
-                
-                <div class="reading-item">
-                    <div class="reading-item-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="reading-item-content">
-                        <h4>《卓越女性：改变科学的50位女性》</h4>
-                        <p><strong>作者：</strong>蕾切尔·斯旺比 (Rachel Swaby)</p>
-                        <p>这本书讲述了50位改变科学的杰出女性科学家的故事，提供了理解李飞飞作为女性科学家经历的更广阔背景。书中的许多故事与李飞飞在科技领域打破性别壁垒的经历产生了共鸣。</p>
-                    </div>
-                </div>
-                
-            <div class="reading-item">
-                    <div class="reading-item-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="reading-item-content">
-                        <h4>《人类的未来：科技、智慧与生命的下一步》</h4>
-                        <p><strong>作者：</strong>米奇奥·卡库 (Michio Kaku)</p>
-                        <p>著名物理学家卡库对未来科技的展望与李飞飞在人工智能领域的工作形成互补。这本书提供了更广阔的科技发展视角，帮助读者理解AI在整个人类科技进步中的位置。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-section">
-                    <h3>关于书评作者</h3>
-                    <p>太平路小学教师。</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>联系方式</h3>
-                    <p><i class="fas fa-envelope"></i> q111111221@gmail.com</p>
-                    <p><i class="fas fa-globe"></i> www.bookreviews.com
+            <div class="menu-buttons">
+                <button class="menu-button" onclick="game.showChapterSelection()">
+                    开始游戏 Start Game
+                </button>
+                <button class="menu-button" onclick="game.showAchievements()">
+                    我的成就 Achievements
+                </button>
+                <button class="menu-button" onclick="game.showSettings()">
+                    设置 Settings
+                </button>
             </div>
         </div>
-    </footer>
+
+        <!-- 章节选择 -->
+        <div class="chapter-selection" id="chapterSelection">
+            <div class="game-header">
+                <h2 style="font-size: 2em; font-weight: 700;">选择章节 Choose Chapter</h2>
+                <button class="back-button" onclick="game.showMainMenu()">返回 Back</button>
+            </div>
+            
+            <div class="chapter-grid" id="chapterGrid">
+                <!-- 章节卡片将通过JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <!-- 游戏界面 -->
+        <div class="game-screen" id="gameScreen">
+            <div class="game-header">
+                <div class="stat-item">Score<span class="stat-value" id="score">0</span></div>
+                <div class="stat-item">Chapter<span class="stat-value" id="level">1</span></div>
+                <div class="stat-item">Streak<span class="stat-value" id="streak">0</span></div>
+                <button class="back-button" onclick="game.showChapterSelection()">返回 Back</button>
+            </div>
+            
+            <div class="game-board" id="gameBoard"></div>
+        </div>
+
+        <!-- 成就界面 -->
+        <div class="achievements-screen" id="achievementsScreen">
+            <div class="game-header">
+                <h2 style="font-size: 2em; font-weight: 700;">我的成就 My Achievements</h2>
+                <button class="back-button" onclick="game.showMainMenu()">返回 Back</button>
+            </div>
+            
+            <div class="achievement-list" id="achievementList"></div>
+        </div>
+
+        <!-- 反馈消息 -->
+        <div class="feedback-message" id="feedbackMessage">
+            <div id="feedbackText"></div>
+        </div>
+    </div>
 
     <script>
-        // DOM加载完成后执行
-        document.addEventListener('DOMContentLoaded', function() {
-            // 主题切换功能
-            const themeToggle = document.getElementById('theme-toggle');
-            const themeIcon = themeToggle.querySelector('i');
-            let myChart; // 声明图表变量，稍后在图表初始化时赋值
-            
-            // 检查系统偏好
-            const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            // 检查本地存储的主题设置
-            const savedTheme = localStorage.getItem('theme');
-            
-            // 应用主题函数
-            function applyTheme(theme) {
-                if (theme === 'dark') {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                } else {
-                    document.documentElement.removeAttribute('data-theme');
-                    themeIcon.classList.remove('fa-sun');
-                    themeIcon.classList.add('fa-moon');
-                }
-            }
-            
-            // 初始设置
-            if (savedTheme === 'dark' || (savedTheme !== 'light' && prefersDarkMode)) {
-                applyTheme('dark');
-            }
-            
-            // 主题切换点击事件
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'dark') {
-                    applyTheme('light');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    applyTheme('dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-                
-                // 如果图表已初始化，更新图表主题
-                if (myChart) {
-                    updateChartTheme();
-                }
-            });
-            
-            // 更新图表主题函数
-            function updateChartTheme() {
-                const chartDom = document.getElementById('chart1');
-                if (!chartDom) return;
-                
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const option = myChart.getOption();
-                
-                myChart.dispose();
-                myChart = echarts.init(chartDom, currentTheme === 'dark' ? 'dark' : null);
-                myChart.setOption(option);
-            }
-            
-            // 平滑滚动
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-            
-            // 延迟加载图表，模拟数据加载
-            setTimeout(() => {
-                // 初始化图表
-                const chartDom = document.getElementById('chart1');
-                if (!chartDom) return;
-                
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                myChart = echarts.init(chartDom, currentTheme === 'dark' ? 'dark' : null);
-                
-                const option = {
-                    title: {
-                        text: '《我看见的世界》读者年龄分布'
-                    },
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    legend: {
-                        data: ['读者数量', '好评率']
-                    },
-                    grid: {
-                        left: '3%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true
-                    },
-                    xAxis: {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: ['18-25岁', '26-35岁', '36-45岁', '46-55岁', '56-65岁', '66岁以上']
-                    },
-                    yAxis: [
-                        {
-                            type: 'value',
-                            name: '读者数量',
-                            min: 0,
-                            max: 3000
-                        },
-                        {
-                            type: 'value',
-                            name: '好评率(%)',
-                            min: 70,
-                            max: 100,
-                            splitLine: {
-                                show: false
-                            }
-                        }
-                    ],
-                    series: [
-                        {
-                            name: '读者数量',
-                            type: 'bar',
-                            data: [1200, 2500, 1800, 1100, 850, 550],
-                            itemStyle: {
-                                color: '#5a67d8'
-                            }
-                        },
-                        {
-                            name: '好评率',
-                            type: 'line',
-                            yAxisIndex: 1,
-                            data: [92, 95, 88, 84, 91, 93],
-                            itemStyle: {
-                                color: '#48bb78'
-                            }
-                        }
+        // 游戏主对象
+        const game = {
+            // 游戏数据
+            chapters: {
+                1: {
+                    name: "Baby Steps",
+                    icon: "👶",
+                    description: "生命最初的里程碑",
+                    verbs: [
+                        { id: 1, text: "was born", chinese: "出生" },
+                        { id: 2, text: "started to crawl", chinese: "开始爬行" },
+                        { id: 3, text: "learned to walk", chinese: "学会走路" },
+                        { id: 4, text: "learned to speak", chinese: "学会说话" }
                     ]
-                };
+                },
+                2: {
+                    name: "Growing Skills",
+                    icon: "🎨",
+                    description: "童年学习新技能",
+                    verbs: [
+                        { id: 5, text: "went to kindergarten", chinese: "上幼儿园" },
+                        { id: 6, text: "went to school", chinese: "上学" },
+                        { id: 7, text: "learned to read", chinese: "学会阅读" },
+                        { id: 8, text: "learned to write", chinese: "学会写字" }
+                    ]
+                },
+                3: {
+                    name: "Adventure Time",
+                    icon: "🚲",
+                    description: "勇敢尝试新挑战",
+                    verbs: [
+                        { id: 9, text: "learned to swim", chinese: "学会游泳" },
+                        { id: 10, text: "learned to ride a bike", chinese: "学会骑自行车" },
+                        { id: 11, text: "made friends", chinese: "交朋友" },
+                        { id: 12, text: "joined a team", chinese: "加入团队" }
+                    ]
+                }
+            },
+
+            achievements: [
+                { id: 'first_life', name: "生命之初 First Life", desc: "完成 was born", icon: "👶", verbId: 1 },
+                { id: 'first_steps', name: "蹒跚学步 First Steps", desc: "完成 learned to walk", icon: "🚶", verbId: 3 },
+                { id: 'first_words', name: "牙牙学语 First Words", desc: "完成 learned to speak", icon: "🗣️", verbId: 4 },
+                { id: 'school_day', name: "入学之日 School Day", desc: "完成 went to school", icon: "🎒", verbId: 6 },
+                { id: 'water_angel', name: "水中精灵 Water Angel", desc: "完成 learned to swim", icon: "🏊", verbId: 9 },
+                { id: 'free_flying', name: "自由飞翔 Free Flying", desc: "完成 learned to ride a bike", icon: "🚲", verbId: 10 },
+                { id: 'social_butterfly', name: "社交达人 Social Butterfly", desc: "完成 made friends", icon: "👫", verbId: 11 },
+                { id: 'streak_master', name: "连击大师 Streak Master", desc: "达到5连击", icon: "⚡", special: 'streak_5' },
+                { id: 'chapter_1', name: "初章完成 Chapter 1 Complete", desc: "完成第一章", icon: "🌟", special: 'chapter_1' },
+                { id: 'all_chapters', name: "成长见证 Growth Witness", desc: "完成所有章节", icon: "🎓", special: 'all_chapters' }
+            ],
+
+            // 游戏状态
+            currentChapter: 1,
+            score: 0,
+            streak: 0,
+            flippedCards: [],
+            matchedPairs: [],
+            gameActive: false,
+            completedVerbs: new Set(),
+            memoryStorage: null,  // 内存存储备份
+
+            // 初始化游戏
+            init: function() {
+                this.loadProgress();
+                this.hideLoading();
+                this.showMainMenu();
+                this.createStarField();
+            },
+
+            // 隐藏加载画面
+            hideLoading: function() {
+                setTimeout(() => {
+                    const loadingScreen = document.getElementById('loadingScreen');
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }, 1000);
+            },
+
+            // 创建星空背景
+            createStarField: function() {
+                setInterval(() => {
+                    if (Math.random() > 0.7) {
+                        this.createParticle();
+                    }
+                }, 500);
+            },
+
+            // 创建粒子
+            createParticle: function() {
+                const particle = document.createElement('div');
+                particle.className = 'particle star';
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(particle);
                 
-                // 响应设备类型的图表选项调整
-                if (window.innerWidth <= 768) {
-                    // 对于移动设备，简化图表
-                    option.legend.show = false;
-                    option.grid.left = '8%';
-                    option.grid.bottom = '12%';
-                    option.title.textStyle = {
-                        fontSize: 14
-                    };
-                    option.xAxis.axisLabel = {
-                        interval: 0,
-                        rotate: 45,
-                        fontSize: 10
-                    };
+                setTimeout(() => {
+                    particle.remove();
+                }, 3000);
+            },
+
+            // 显示主菜单
+            showMainMenu: function() {
+                this.hideAllScreens();
+                document.getElementById('mainMenu').style.display = 'flex';
+            },
+
+            // 显示章节选择
+            showChapterSelection: function() {
+                this.hideAllScreens();
+                document.getElementById('chapterSelection').style.display = 'block';
+                this.renderChapters();
+            },
+
+            // 渲染章节卡片
+            renderChapters: function() {
+                const grid = document.getElementById('chapterGrid');
+                grid.innerHTML = '';
+                
+                const progress = this.getProgress();
+                
+                Object.keys(this.chapters).forEach(chapterId => {
+                    const chapter = this.chapters[chapterId];
+                    const card = document.createElement('div');
+                    card.className = 'chapter-card';
+                    
+                    const isCompleted = progress.completedChapters.includes(parseInt(chapterId));
+                    
+                    card.innerHTML = `
+                        <div class="chapter-icon">${chapter.icon}</div>
+                        ${isCompleted ? '<div class="chapter-completed">✓</div>' : ''}
+                        <div class="chapter-title">${chapter.name}</div>
+                        <div class="chapter-description">${chapter.description}</div>
+                        <div class="chapter-progress">
+                            <div class="chapter-progress-bar" style="width: ${isCompleted ? '100' : '0'}%"></div>
+                        </div>
+                    `;
+                    
+                    card.onclick = () => this.startChapter(chapterId);
+                    grid.appendChild(card);
+                });
+            },
+
+            // 显示游戏界面
+            showGameScreen: function() {
+                this.hideAllScreens();
+                document.getElementById('gameScreen').style.display = 'block';
+            },
+
+            // 显示成就界面
+            showAchievements: function() {
+                this.hideAllScreens();
+                document.getElementById('achievementsScreen').style.display = 'block';
+                this.renderAchievements();
+            },
+
+            // 显示设置
+            showSettings: function() {
+                this.showFeedback("⚙️ Settings coming soon! 设置功能即将推出！");
+            },
+
+            // 隐藏所有界面
+            hideAllScreens: function() {
+                document.getElementById('mainMenu').style.display = 'none';
+                document.getElementById('chapterSelection').style.display = 'none';
+                document.getElementById('gameScreen').style.display = 'none';
+                document.getElementById('achievementsScreen').style.display = 'none';
+            },
+
+            // 开始章节
+            startChapter: function(chapterNum) {
+                this.currentChapter = chapterNum;
+                this.score = 0;
+                this.streak = 0;
+                this.showGameScreen();
+                this.initializeGame();
+            },
+
+            // 初始化游戏板
+            initializeGame: function() {
+                const chapter = this.chapters[this.currentChapter];
+                const verbs = chapter.verbs;
+                
+                // 创建卡片数据
+                const cards = [];
+                verbs.forEach(verb => {
+                    cards.push({ id: verb.id + '_en', content: verb.text, pairId: verb.id });
+                    cards.push({ id: verb.id + '_cn', content: verb.chinese, pairId: verb.id });
+                });
+                
+                // 打乱卡片
+                this.shuffleArray(cards);
+                
+                // 创建游戏板
+                const gameBoard = document.getElementById('gameBoard');
+                gameBoard.innerHTML = '';
+                
+                // 设置网格
+                const columns = window.innerWidth <= 768 ? 3 : 4;
+                gameBoard.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+                
+                // 创建卡片
+                cards.forEach((card, index) => {
+                    const cardElement = this.createCard(card);
+                    // 延迟动画
+                    setTimeout(() => {
+                        cardElement.style.opacity = '1';
+                        cardElement.style.transform = 'scale(1)';
+                    }, index * 100);
+                    gameBoard.appendChild(cardElement);
+                });
+                
+                // 重置状态
+                this.flippedCards = [];
+                this.matchedPairs = [];
+                this.gameActive = true;
+                this.updateDisplay();
+            },
+
+            // 创建卡片
+            createCard: function(cardData) {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.id = cardData.id;
+                card.dataset.pairId = cardData.pairId;
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
+                card.style.transition = 'all 0.5s ease';
+                
+                const content = document.createElement('div');
+                content.className = 'card-content';
+                content.textContent = cardData.content;
+                
+                card.appendChild(content);
+                card.addEventListener('click', () => this.flipCard(card));
+                
+                return card;
+            },
+
+            // 翻转卡片
+            flipCard: function(card) {
+                if (!this.gameActive || card.classList.contains('flipped') || card.classList.contains('matched')) {
+                    return;
                 }
                 
-                myChart.setOption(option);
+                if (this.flippedCards.length >= 2) {
+                    return;
+                }
                 
-                // 响应窗口大小变化
-                window.addEventListener('resize', () => {
-                    myChart.resize();
-                    // 根据新窗口大小调整图表选项
-                    const updatedOption = myChart.getOption();
-                    if (window.innerWidth <= 768) {
-                        // 对于移动设备，简化图表
-                        updatedOption.legend[0].show = false;
-                        updatedOption.grid[0].left = '8%';
-                        updatedOption.grid[0].bottom = '12%';
-                        updatedOption.title[0].textStyle = {
-                            fontSize: 14
-                        };
-                        updatedOption.xAxis[0].axisLabel = {
-                            interval: 0,
-                            rotate: 45,
-                            fontSize: 10
-                        };
-                    } else {
-                        // 对于桌面设备，恢复完整图表
-                        updatedOption.legend[0].show = true;
-                        updatedOption.grid[0].left = '3%';
-                        updatedOption.grid[0].bottom = '3%';
-                        updatedOption.title[0].textStyle = {
-                            fontSize: 16
-                        };
-                        updatedOption.xAxis[0].axisLabel = {
-                            interval: 'auto',
-                            rotate: 0,
-                            fontSize: 12
-                        };
-                    }
-                    myChart.setOption(updatedOption);
-                });
-            }, 1000);
-            
-            // 添加滚动时的淡入效果
-            const sections = document.querySelectorAll('.section');
-            
-            const fadeInOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            };
-            
-            const fadeInObserver = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, fadeInOptions);
-            
-            sections.forEach(section => {
-                section.style.opacity = 0;
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-                fadeInObserver.observe(section);
-            });
-            
-            // 卡片悬停效果增强
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-5px)';
-                    card.style.boxShadow = 'var(--card-hover-shadow)';
-                });
+                card.classList.add('flipped');
+                this.flippedCards.push(card);
                 
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = '';
-                    card.style.boxShadow = 'var(--card-shadow)';
+                if (this.flippedCards.length === 2) {
+                    this.checkMatch();
+                }
+            },
+
+            // 检查匹配
+            checkMatch: function() {
+                this.gameActive = false;
+                const [card1, card2] = this.flippedCards;
+                
+                if (card1.dataset.pairId === card2.dataset.pairId) {
+                    // 匹配成功
+                    this.handleMatch();
+                } else {
+                    // 匹配失败
+                    this.handleMismatch();
+                }
+            },
+
+            // 处理匹配成功
+            handleMatch: function() {
+                const [card1, card2] = this.flippedCards;
+                const verbId = parseInt(card1.dataset.pairId);
+                
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                
+                this.streak++;
+                this.score += 100 + (this.streak * 10);
+                this.matchedPairs.push(verbId);
+                this.completedVerbs.add(verbId);
+                
+                // 创建粒子效果
+                this.createMatchParticles(card1);
+                this.createMatchParticles(card2);
+                
+                // 显示反馈
+                const feedbacks = [
+                    "😊 Great job! 做得好！",
+                    "🌟 Wonderful! 太棒了！",
+                    "👏 Perfect! 完美！",
+                    "🎉 Amazing! 太厉害了！",
+                    "💪 You did it! 你做到了！"
+                ];
+                
+                if (this.streak >= 5) {
+                    this.showFeedback("⚡ Incredible streak! 连击太厉害了！");
+                    this.checkAchievement('streak_5');
+                } else if (this.streak >= 3) {
+                    this.showFeedback("🔥 Great streak! 连击很棒！");
+                } else {
+                    this.showFeedback(feedbacks[Math.floor(Math.random() * feedbacks.length)]);
+                }
+                
+                // 检查动词相关成就
+                this.checkVerbAchievements(verbId);
+                
+                // 检查是否完成章节
+                if (this.matchedPairs.length === this.chapters[this.currentChapter].verbs.length) {
+                    setTimeout(() => this.completeChapter(), 1500);
+                }
+                
+                this.flippedCards = [];
+                this.gameActive = true;
+                this.updateDisplay();
+                
+                // 保存进度
+                this.saveProgress();
+            },
+
+            // 创建匹配粒子效果
+            createMatchParticles: function(card) {
+                const rect = card.getBoundingClientRect();
+                for (let i = 0; i < 8; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle star';
+                    particle.style.left = rect.left + rect.width / 2 + 'px';
+                    particle.style.top = rect.top + rect.height / 2 + 'px';
+                    particle.style.transform = `rotate(${i * 45}deg)`;
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 3000);
+                }
+            },
+
+            // 处理匹配失败
+            handleMismatch: function() {
+                this.streak = 0;
+                
+                const feedbacks = [
+                    "😅 It's okay! Try again! 没关系！再试一次！",
+                    "💡 Almost there! 差一点就对了！",
+                    "🌈 Good try! You'll get it! 不错的尝试！你可以的！",
+                    "⭐ Mistakes help us grow! 错误让我们成长！"
+                ];
+                this.showFeedback(feedbacks[Math.floor(Math.random() * feedbacks.length)]);
+                
+                setTimeout(() => {
+                    this.flippedCards.forEach(card => card.classList.remove('flipped'));
+                    this.flippedCards = [];
+                    this.gameActive = true;
+                }, 1000);
+                
+                this.updateDisplay();
+            },
+
+            // 完成章节
+            completeChapter: function() {
+                const progress = this.getProgress();
+                const chapterId = parseInt(this.currentChapter);
+                
+                if (!progress.completedChapters.includes(chapterId)) {
+                    progress.completedChapters.push(chapterId);
+                    this.saveProgressData(progress);
+                    
+                    // 检查章节成就
+                    this.checkAchievement(`chapter_${chapterId}`);
+                    
+                    // 检查是否完成所有章节
+                    if (progress.completedChapters.length === Object.keys(this.chapters).length) {
+                        this.checkAchievement('all_chapters');
+                    }
+                }
+                
+                this.showFeedback("🎉 Chapter Complete! 章节完成！");
+                setTimeout(() => this.showChapterSelection(), 2500);
+            },
+
+            // 检查动词相关成就
+            checkVerbAchievements: function(verbId) {
+                this.achievements.forEach(achievement => {
+                    if (achievement.verbId === verbId) {
+                        this.unlockAchievement(achievement.id);
+                    }
                 });
-            });
-            
-            // 页面加载完成动画
-            setTimeout(() => {
-                document.body.classList.add('loaded');
-            }, 300);
-        });
+            },
+
+            // 检查特殊成就
+            checkAchievement: function(specialType) {
+                this.achievements.forEach(achievement => {
+                    if (achievement.special === specialType) {
+                        this.unlockAchievement(achievement.id);
+                    }
+                });
+            },
+
+            // 解锁成就
+            unlockAchievement: function(achievementId) {
+                const progress = this.getProgress();
+                if (!progress.unlockedAchievements.includes(achievementId)) {
+                    progress.unlockedAchievements.push(achievementId);
+                    this.saveProgressData(progress);
+                    
+                    const achievement = this.achievements.find(a => a.id === achievementId);
+                    if (achievement) {
+                        setTimeout(() => {
+                            this.showFeedback(`🏆 Achievement Unlocked! 成就解锁！\n${achievement.icon} ${achievement.name}`);
+                        }, 500);
+                    }
+                }
+            },
+
+            // 显示反馈
+            showFeedback: function(text) {
+                const feedback = document.getElementById('feedbackMessage');
+                const feedbackText = document.getElementById('feedbackText');
+                feedbackText.innerHTML = text.replace('\n', '<br>');
+                feedback.classList.add('show');
+                
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                }, 2500);
+            },
+
+            // 更新显示
+            updateDisplay: function() {
+                document.getElementById('score').textContent = this.score;
+                document.getElementById('level').textContent = this.currentChapter;
+                document.getElementById('streak').textContent = this.streak;
+            },
+
+            // 渲染成就
+            renderAchievements: function() {
+                const list = document.getElementById('achievementList');
+                list.innerHTML = '';
+                
+                const progress = this.getProgress();
+                
+                this.achievements.forEach(achievement => {
+                    const card = document.createElement('div');
+                    card.className = 'achievement-card';
+                    
+                    if (progress.unlockedAchievements.includes(achievement.id)) {
+                        card.classList.add('unlocked');
+                    }
+                    
+                    card.innerHTML = `
+                        <div class="achievement-icon">${achievement.icon}</div>
+                        <div class="achievement-name">${achievement.name}</div>
+                        <div class="achievement-desc">${achievement.desc}</div>
+                    `;
+                    
+                    list.appendChild(card);
+                });
+            },
+
+            // 工具函数：打乱数组
+            shuffleArray: function(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            },
+
+            // 获取进度
+            getProgress: function() {
+                try {
+                    const saved = localStorage.getItem('growingUpStoryProgress');
+                    if (saved) {
+                        return JSON.parse(saved);
+                    }
+                } catch (e) {
+                    // 如果 localStorage 不可用，使用内存存储
+                    console.log('localStorage not available, using memory storage');
+                    return this.memoryStorage || this.getDefaultProgress();
+                }
+                return this.getDefaultProgress();
+            },
+
+            // 获取默认进度
+            getDefaultProgress: function() {
+                return {
+                    completedChapters: [],
+                    unlockedAchievements: [],
+                    totalScore: 0,
+                    completedVerbs: []
+                };
+            },
+
+            // 保存进度数据
+            saveProgressData: function(progress) {
+                try {
+                    localStorage.setItem('growingUpStoryProgress', JSON.stringify(progress));
+                } catch (e) {
+                    // 如果 localStorage 不可用，保存到内存
+                    console.log('localStorage not available, saving to memory');
+                    this.memoryStorage = progress;
+                }
+            },
+
+            // 保存进度
+            saveProgress: function() {
+                const progress = this.getProgress();
+                progress.totalScore = Math.max(progress.totalScore, this.score);
+                progress.completedVerbs = [...new Set([...progress.completedVerbs, ...Array.from(this.completedVerbs)])];
+                this.saveProgressData(progress);
+            },
+
+            // 加载进度
+            loadProgress: function() {
+                const progress = this.getProgress();
+                this.completedVerbs = new Set(progress.completedVerbs || []);
+            }
+        };
+
+        // 页面加载完成后初始化游戏
+        window.onload = function() {
+            game.init();
+        };
     </script>
+</body>
+</html>
